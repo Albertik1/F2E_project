@@ -5,6 +5,10 @@ import SearchForm from './Components/SearchForm';
 import RepoList from './Components/RepoList';
 
 
+
+
+
+
 export default class App extends Component {
 
   constructor() {
@@ -21,13 +25,14 @@ export default class App extends Component {
   }
 
 
+
   performSearch = (query = 'web') => {
     axios.get(`https://api.github.com/search/repositories?q=${query}`)
         .then(response => {
           this.setState({
             query: query,
             repos: response.data.items,
-            loading: false
+            loading: false,
           });
         })
         .catch(error => {
@@ -37,14 +42,12 @@ export default class App extends Component {
 
   render() {
     return (
+
         <div>
           <div className="main-header">
             <div className="inner">
               <h1 className="main-title">RepoSearch</h1>
               <SearchForm onSearch={this.performSearch} />
-              <section className='section'>
-
-              </section>
             </div>
           </div>
           <div className="main-content">
@@ -59,4 +62,6 @@ export default class App extends Component {
 
     );
   }
+
 }
+
